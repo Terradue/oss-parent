@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 2011 Terradue srl
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.terradue</groupId>
+  <artifactId>oss-parent</artifactId>
+  <version>1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>Terradue OSS parent POM</name>
+  <description>The Terradue OSS parent POM</description>
+  <url>https://www.terradue.com/</url>
+  <inceptionYear>2011</inceptionYear>
+  <organization>
+    <name>Terradue s.r.l.</name>
+    <url>http://www.terradue.com/</url>
+  </organization>
+
+  <developers>
+    <developer>
+      <id>p3dr0</id>
+      <name>Pedro Pereira Goncalves</name>
+      <email>pedro [dot] goncalves [at] terradue [dot] com</email>
+      <timezone>+0</timezone>
+    </developer>
+    <developer>
+      <id>fabricebrito</id>
+      <name>Fabrice Brito</name>
+      <email>fabrice [dot] brito [at] terradue [dot] com</email>
+      <timezone>+1</timezone>
+    </developer>
+    <developer>
+      <id>HerveCaumont</id>
+      <name>Hervé Caumont</name>
+      <email>herve [dot] caumont [at] terradue [dot] com</email>
+      <timezone>+1</timezone>
+    </developer>
+    <developer>
+      <id>floeschau</id>
+      <name>Frank Loeschau</name>
+      <email>frank [dot] loeschau [at] terradue [dot] com</email>
+      <timezone>+1</timezone>
+    </developer>
+    <developer>
+      <id>fdandria</id>
+      <name>Fabio D'Andria</name>
+      <email>fabio [dot] dandria [at] terradue [dot] com</email>
+      <timezone>+1</timezone>
+    </developer>
+    <developer>
+      <id>plandart</id>
+      <name>Paula Landart</name>
+      <email>paula [dot] landart [at] terradue [dot] com</email>
+      <timezone>+1</timezone>
+    </developer>
+    <developer>
+      <id>emmanuelmathot</id>
+      <name>Emmanuel Mathot</name>
+      <email>emmanuel [dot] mathot [at] terradue [dot] com</email>
+      <timezone>+1</timezone>
+    </developer>
+    <developer>
+      <id>cventafridda</id>
+      <name>Cosimo Ventafridda</name>
+      <email>cosimo [dot] ventafridda [at] terradue [dot] com</email>
+      <timezone>+1</timezone>
+    </developer>
+    <developer>
+      <id>fbarchetta</id>
+      <name>Francesco Barchetta</name>
+      <email>francesco [dot] barchetta [at] terradue [dot] com</email>
+      <timezone>+1</timezone>
+    </developer>
+    <developer>
+      <id>simonetripodi</id>
+      <name>Simone Tripodi</name>
+      <email>simone [dot] tripodi [at] terradue [dot] com</email>
+      <timezone>+1</timezone>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>scm:svn:https://engine.terradue.com/svn/terradue/infra/t2-parent/trunk</connection>
+    <developerConnection>scm:svn:https://engine.terradue.com/svn/terradue/infra/t2-parent/trunk</developerConnection>
+    <url>https://engine.terradue.com/svn/terradue/infra/t2-parent/trunk</url>
+  </scm>
+  <issueManagement>
+    <system>Redmine</system>
+    <url>https://redmine.terradue.com:8100/</url>
+  </issueManagement>
+  <distributionManagement>
+    <snapshotRepository>
+      <id>repository.terradue.com</id>
+      <name>repository.terradue.com-snapshots</name>
+      <url>http://repository.terradue.com/artifactory/libs-snapshot-local</url>
+    </snapshotRepository>
+    <repository>
+      <id>repository.terradue.com</id>
+      <name>repository.terradue.com-releases</name>
+      <url>http://repository.terradue.com/artifactory/libs-release-local</url>
+    </repository>
+  </distributionManagement>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ssZ</maven.build.timestamp.format>
+    <implementation.build>${scmBranch}@r${buildNumber}; ${maven.build.timestamp}</implementation.build>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>buildnumber-maven-plugin</artifactId>
+        <version>1.0</version>
+        <executions>
+          <execution>
+            <phase>validate</phase>
+            <goals>
+              <goal>create</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <!-- Use committed revision so it does not change every time svn update is run -->
+          <useLastCommittedRevision>true</useLastCommittedRevision>
+          <!-- default revision number if unavailable -->
+          <revisionOnScmFailure>??????</revisionOnScmFailure>
+          <!-- svnjava works even if an svn command-line client is not on the path -->
+          <providerImplementations>
+            <svn>javasvn</svn>
+          </providerImplementations>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <version>1.0</version>
+        <executions>
+          <execution>
+            <id>enforce-java</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireJavaVersion>
+                  <version>[1.5,)</version>
+                  <message>[ERROR] The currently supported version of Java is 1.5 or higher</message>
+                </requireJavaVersion>
+                <requireMavenVersion>
+                  <version>[3.0,)</version>
+                  <message>[ERROR] The currently supported version of Apache Maven is 3.0 or higher</message>
+                </requireMavenVersion>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-clean-plugin</artifactId>
+        <version>2.4.1</version>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>3.0</version>
+        <executions>
+          <execution>
+            <id>attach-descriptor</id>
+            <goals>
+              <goal>attach-descriptor</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-install-plugin</artifactId>
+        <version>2.3.1</version>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>2.6</version>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-scm-plugin</artifactId>
+        <version>1.5</version>
+      </plugin>
+    </plugins>
+
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>2.2.1</version>
+          <configuration>
+            <mavenExecutorId>forked-path</mavenExecutorId>
+            <useReleaseProfile>false</useReleaseProfile>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>2.5</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+        <artifactId>wagon-ssh</artifactId>
+        <version>1.0</version>
+      </extension>
+    </extensions>
+  </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>2.4</version>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-changes-plugin</artifactId>
+        <version>2.6</version>
+        <configuration>
+          <issueLinkTemplate>%URL%/issues/show/%ISSUE%</issueLinkTemplate>
+        </configuration>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>changes-report</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>taglist-maven-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <tagListOptions>
+            <tagClasses>
+              <tagClass>
+                <displayName>Todo Work</displayName>
+                <tags>
+                  <tag>
+                    <matchString>TODO</matchString>
+                    <matchType>ignoreCase</matchType>
+                  </tag>
+                  <tag>
+                    <matchString>FIXME</matchString>
+                    <matchType>ignoreCase</matchType>
+                  </tag>
+                </tags>
+              </tagClass>
+            </tagClasses>
+          </tagListOptions>
+        </configuration>
+      </plugin>
+    </plugins>
+  </reporting>
+
+</project>
