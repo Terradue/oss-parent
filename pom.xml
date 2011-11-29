@@ -161,6 +161,8 @@
           <useLastCommittedRevision>true</useLastCommittedRevision>
           <!-- default revision number if unavailable -->
           <revisionOnScmFailure>??????</revisionOnScmFailure>
+          <doCheck>false</doCheck>
+          <doUpdate>true</doUpdate>
         </configuration>
       </plugin>
 
