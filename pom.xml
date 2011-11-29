@@ -255,7 +255,7 @@
           <configuration>
             <mavenExecutorId>forked-path</mavenExecutorId>
             <useReleaseProfile>false</useReleaseProfile>
-            <arguments>-Prelease</arguments>
+            <arguments>-Prelease,terradue</arguments>
           </configuration>
         </plugin>
 
