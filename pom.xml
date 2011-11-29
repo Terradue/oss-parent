@@ -100,19 +100,19 @@
     <url>https://engine.terradue.com/svn/terradue/infra/t2-parent/trunk</url>
   </scm>
   <issueManagement>
-    <system>Redmine</system>
-    <url>https://redmine.terradue.com:8100/</url>
+    <system>GitHub Issue Management</system>
+    <url>https://github.com/Terradue/${project.artifactId}/issues</url>
   </issueManagement>
   <distributionManagement>
     <snapshotRepository>
-      <id>repository.terradue.com</id>
-      <name>repository.terradue.com-snapshots</name>
-      <url>http://repository.terradue.com/artifactory/libs-snapshot-local</url>
+      <id>sonatype-nexus-snapshots</id>
+      <name>Sonatype Nexus Snapshots</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
     </snapshotRepository>
     <repository>
-      <id>repository.terradue.com</id>
-      <name>repository.terradue.com-releases</name>
-      <url>http://repository.terradue.com/artifactory/libs-release-local</url>
+      <id>sonatype-nexus-staging</id>
+      <name>Nexus Release Repository</name>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
     </repository>
   </distributionManagement>
 
@@ -123,6 +123,20 @@
     <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ssZ</maven.build.timestamp.format>
     <implementation.build>${scmBranch}@r${buildNumber}; ${maven.build.timestamp}</implementation.build>
   </properties>
+
+  <repositories>
+    <repository>
+      <id>sonatype-nexus-snapshots</id>
+      <name>Sonatype Nexus Snapshots</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
 
   <build>
     <plugins>
