@@ -95,9 +95,9 @@
   </developers>
 
   <scm>
-    <connection>scm:svn:https://engine.terradue.com/svn/terradue/infra/t2-parent/trunk</connection>
-    <developerConnection>scm:svn:https://engine.terradue.com/svn/terradue/infra/t2-parent/trunk</developerConnection>
-    <url>https://engine.terradue.com/svn/terradue/infra/t2-parent/trunk</url>
+    <connection>scm:git:ssh://github.com/Terradue/oss-parent.git</connection>
+    <developerConnection>scm:git:git+ssh://git@github.com/Terradue/oss-parent.git</developerConnection>
+    <url>https://github.com/Terradue/oss-parent</url>
   </scm>
   <issueManagement>
     <system>GitHub Issue Management</system>
