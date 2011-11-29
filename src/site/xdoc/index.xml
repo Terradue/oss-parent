@@ -88,6 +88,28 @@
 </settings>]]></source>
         </subsection>
 
+        <subsection name="Terradue">
+          <p>add the following profile to your <code>~/.m2/settings.xml</code> file. You may already have other servers
+          in this file. If not just create the file.</p>
+
+          <source><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+  <profiles>
+    <profile>
+      <id>terradue</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <properties>
+        <mavenExecutorId>forked-path</mavenExecutorId>
+        <!-- put your GPG key here -->
+        <gpg.keyname>41A0D191</gpg.keyname>
+      </properties>
+    </profile>
+  </profiles>
+</settings>]]></source>
+        </subsection>
+
         <subsection name="Configure the Terradue parent pom">
           <p>If you're starting a new project, please use the already configured parent pom to avoid replicate the same
           meta inf in every project:</p>
