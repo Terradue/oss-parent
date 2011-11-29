@@ -28,7 +28,7 @@
                 
                 
                   <li id="publishDate">Last Published: 29 November 2011</li>
-                  <li class="divider">|</li> <li id="projectVersion">Version: 1-SNAPSHOT</li>
+                  <li class="divider">|</li> <li id="projectVersion">Version: 1</li>
                                       
                 
               </ul>
@@ -172,6 +172,28 @@
       &lt;username&gt;git&lt;/username&gt;
     &lt;/server&gt;
   &lt;/servers&gt;
+&lt;/settings&gt;</pre></div>
+        </div>
+
+        <div class="section"><h3>Terradue<a name="Terradue"></a></h3>
+          <p>add the following profile to your <tt>~/.m2/settings.xml</tt> file. You may already have other servers
+          in this file. If not just create the file.</p>
+
+          <div class="source"><pre class="prettyprint">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;settings&gt;
+  &lt;profiles&gt;
+    &lt;profile&gt;
+      &lt;id&gt;terradue&lt;/id&gt;
+      &lt;activation&gt;
+        &lt;activeByDefault&gt;false&lt;/activeByDefault&gt;
+      &lt;/activation&gt;
+      &lt;properties&gt;
+        &lt;mavenExecutorId&gt;forked-path&lt;/mavenExecutorId&gt;
+        &lt;!-- put your GPG key here --&gt;
+        &lt;gpg.keyname&gt;41A0D191&lt;/gpg.keyname&gt;
+      &lt;/properties&gt;
+    &lt;/profile&gt;
+  &lt;/profiles&gt;
 &lt;/settings&gt;</pre></div>
         </div>
 
