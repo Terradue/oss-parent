@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="4.2.5" timestamp="2011-12-02T15:08:08.323">
+<pmd version="4.2.5" timestamp="2011-12-07T13:02:31.316">
 <file name="/Users/simonetripodi/Documents/workspace/jcatalogue-client/target/checkout/src/main/java/com/terradue/jcatalogue/client/AtomEntity.java">
 <violation beginline="44" endline="44" begincolumn="20" endcolumn="24" rule="UnusedPrivateField" ruleset="Unused Code Rules" package="com.terradue.jcatalogue.client" class="AtomEntity" variable="title" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedPrivateField" priority="3">
 Avoid unused private fields such as 'title'.
@@ -35,7 +35,7 @@ Avoid unused private fields such as 'downloaded'.
 </violation>
 </file>
 <file name="/Users/simonetripodi/Documents/workspace/jcatalogue-client/target/checkout/src/main/java/com/terradue/jcatalogue/client/CatalogueClient.java">
-<violation beginline="256" endline="260" begincolumn="13" endcolumn="13" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="com.terradue.jcatalogue.client" class="CatalogueClient" method="downloadFile" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+<violation beginline="278" endline="282" begincolumn="13" endcolumn="13" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="com.terradue.jcatalogue.client" class="CatalogueClient" method="downloadFile" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
 These nested if statements could be combined
 </violation>
 </file>

@@ -28,6 +28,7 @@ var DATA = [
       { id:26, label:"com.terradue.jcatalogue.client.internal.digester.AtomRulesModule", link:"com/terradue/jcatalogue/client/internal/digester/AtomRulesModule.html", type:"class" },
       { id:27, label:"com.terradue.jcatalogue.client.internal.digester.DataSetRulesModule", link:"com/terradue/jcatalogue/client/internal/digester/DataSetRulesModule.html", type:"class" },
       { id:28, label:"com.terradue.jcatalogue.client.internal.digester.LinkedAtomEntityModule", link:"com/terradue/jcatalogue/client/internal/digester/LinkedAtomEntityModule.html", type:"class" },
-      { id:29, label:"com.terradue.jcatalogue.client.internal.digester.OpenSearchModule", link:"com/terradue/jcatalogue/client/internal/digester/OpenSearchModule.html", type:"class" }
+      { id:29, label:"com.terradue.jcatalogue.client.internal.digester.OpenSearchModule", link:"com/terradue/jcatalogue/client/internal/digester/OpenSearchModule.html", type:"class" },
+      { id:30, label:"com.terradue.jcatalogue.client.internal.digester.SingleDataSetRulesModule", link:"com/terradue/jcatalogue/client/internal/digester/SingleDataSetRulesModule.html", type:"class" }
 
     ];

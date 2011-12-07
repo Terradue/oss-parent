@@ -8,9 +8,9 @@
     <language>en-us</language>
     <copyright>&#169;2011 Terradue s.r.l.</copyright>
     <item>
-      <title>File: 33,
-             Errors: 91,
-             Warnings: 36,
+      <title>File: 34,
+             Errors: 92,
+             Warnings: 43,
              Infos: 0
       </title>
             <link>https://www.terradue.com/oss-java-parent/jcatalogue-client//checkstyle.html</link>
@@ -267,6 +267,20 @@
               </tr>
                           <tr>
                 <td>
+                  <a href="https://www.terradue.com/oss-java-parent/jcatalogue-client//checkstyle.html#com.terradue.jcatalogue.client.internal.digester.SingleDataSetRulesModule.java">com/terradue/jcatalogue/client/internal/digester/SingleDataSetRulesModule.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="https://www.terradue.com/oss-java-parent/jcatalogue-client//checkstyle.html#com.terradue.jcatalogue.client.internal.digester.Namespaces.java">com/terradue/jcatalogue/client/internal/digester/Namespaces.java</a>
                 </td>
                 <td>
@@ -455,7 +469,7 @@
                   0
                 </td>
                 <td>
-                  10
+                  16
                 </td>
                 <td>
                   5

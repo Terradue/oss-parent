@@ -159,6 +159,36 @@
 <parameter name="parameters" type="com.terradue.jcatalogue.client.Parameter...">
 </parameter>
 </method>
+<method name="getDataSet"
+ return="com.terradue.jcatalogue.client.DataSet"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="uri" type="java.lang.String">
+</parameter>
+<parameter name="parameters" type="com.terradue.jcatalogue.client.Parameter...">
+</parameter>
+</method>
+<method name="getDataSet"
+ return="com.terradue.jcatalogue.client.DataSet"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="uri" type="java.net.URI">
+</parameter>
+<parameter name="parameters" type="com.terradue.jcatalogue.client.Parameter...">
+</parameter>
+</method>
 <method name="getSerie"
  return="com.terradue.jcatalogue.client.Serie"
  abstract="false"
@@ -1010,6 +1040,34 @@
 >
 <constructor name="OpenSearchModule"
  type="com.terradue.jcatalogue.client.internal.digester.OpenSearchModule"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="configure"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+</class>
+<class name="SingleDataSetRulesModule"
+ extends="org.apache.commons.digester3.binder.AbstractNamespaceURIBasedRulesModule"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="SingleDataSetRulesModule"
+ type="com.terradue.jcatalogue.client.internal.digester.SingleDataSetRulesModule"
  static="false"
  final="false"
  deprecated="not deprecated"
