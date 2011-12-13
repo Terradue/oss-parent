@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>
-    JCatalogue Client</title>
+    Introduction</title>
     <link rel="stylesheet" href="./css/apache-maven-fluido.min.css" />
     <link rel="stylesheet" href="./css/site.css" />
     <link rel="stylesheet" href="./css/print.css" media="print" />
@@ -28,7 +28,7 @@
                 
                 
                   <li id="publishDate">Last Published: 13 December 2011</li>
-                  <li class="divider">|</li> <li id="projectVersion">Version: 0.3-SNAPSHOT</li>
+                  <li class="divider">|</li> <li id="projectVersion">Version: 2-SNAPSHOT</li>
                                       
                 
               </ul>
@@ -38,16 +38,7 @@
         <div class="well">
                 
                 
-                                   <h5>User guide</h5>
-                  <ul>
-                  <li class="none">
-            <strong>5 minutes tutorial</strong>
-          </li>
-                  <li class="none">
-                          <a href="installation.html" title="Installation">Installation</a>
-            </li>
-          </ul>
-                       <h5>Project Documentation</h5>
+                                   <h5>Project Documentation</h5>
                   <ul>
                                                                                                                                                                                                                                                                                     <li class="expanded">
                           <a href="project-info.html" title="Project Information">Project Information</a>
@@ -90,15 +81,9 @@
             </li>
               </ul>
         </li>
-                                                                                                                                                                                                                                                        <li class="collapsed">
+                                                                                      <li class="collapsed">
                           <a href="project-reports.html" title="Project Reports">Project Reports</a>
                   </li>
-          </ul>
-                       <h5>Links</h5>
-                  <ul>
-                  <li class="none">
-                          <a href="http://www.terradue.com/" class="externalLink" title="Terradue">Terradue</a>
-            </li>
           </ul>
                       
                 
@@ -127,246 +112,119 @@
   distributed under the License is distributed on an "AS IS" BASIS,
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
-  limitations under the License. -->
+  limitations under the License. --><!-- version: $Id: index.xml 4035 2011-11-23 20:58:15Z simone.tripodi $ -->
 
   
-    <div class="section"><h2>Catalogue Java APIs<a name="Catalogue_Java_APIs"></a></h2>
-      <p>This project aims to maintain a REST client APIs set for <i>OpenSearch Geo and Temporal protocol</i>servers.</p>
+    <div class="section"><h2>Introduction<a name="Introduction"></a></h2>
+      <p>This page will guide the development team with setting up their environment to perform a release.</p>
 
-      <div class="section"><h3>Obtaining a Client instance<a name="Obtaining_a_Client_instance"></a></h3>
-        <p>The main entry point is querying the Catalogue accessing to the main <i>OpenSearch</i> description:</p>
-
-        <div class="source"><pre class="prettyprint">import com.terradue.jcatalogue.client.*;
-
-final CatalogueClient client = new CatalogueClient();
-
-CatalogueDescription catalogueDescription = client.discover( &quot;http://eo-virtual-archive4.esa.int/search/description&quot; );</pre></div>
-      </div>
-
-      <div class="section"><h3>The OpenSearch meta data<a name="The_OpenSearch_meta_data"></a></h3>
-        <p>Once obtained a <tt>CatalogueDescription</tt> instance, users can now access (via getters) to search
-        metadata, such as:</p>
-
+      <div class="section"><h3>Prerequisites<a name="Prerequisites"></a></h3>
         <ul>
-          <li>short name;</li>
-          <li>long name;</li>
-          <li>description;</li>
-          <li>tags;</li>
-          <li>contact;</li>
-          <li>developer;</li>
-          <li>attribution;</li>
-          <li>syndication right;</li>
-          <li>adult content flag;</li>
-          <li>language;</li>
-          <li>input encoding;</li>
-          <li>output encoding.</li>
-        </ul>
-
-        <p>The next step is accessing to the OpenSearch URL templates, which describe the how to query the server to
-        obtain a <tt>Catalogue</tt> instance:</p>
-
-        <div class="source"><pre class="prettyprint">for ( OpenSearchUrl url : catalogueDescription.getOpenSearchUrls() )
-{
-    System.out.printf( &quot;%s) %s%n&quot;, url.getType(), url.getBaseUrl() );
-
-    for ( OpenSearchParameter parameter : url.getParameters() )
-    {
-        System.out.printf( &quot;    Key: %s, parameter: %s, mandatory: %s%n&quot;,
-                           parameter.getKey(), parameter.getType(), parameter.isMandatory() );
-    }
-}</pre></div>
-
-        <p><span class="label notice">Notice</span>: the <b>standard</b> Atom protocol
-        (<tt>application/xml+atom</tt>) is supported by default by the client.</p>
-      </div>
-
-      <div class="section"><h3>Accessing to the Catalogue<a name="Accessing_to_the_Catalogue"></a></h3>
-        <p>From a <tt>CatalogueDescription</tt> is very easy accessing to a <tt>Catalogue</tt>:</p>
-
-        <div class="source"><pre class="prettyprint">Catalogue catalogue = catalogueDescription.getCatalogue();</pre></div>
-
-        <p><tt>Catalogue</tt> instances allow access (via getters) to meta informations such as:</p>
-        <ul>
-          <li>title;</li>
-          <li>subtitle;</li>
-          <li>content;</li>
-          <li>published;</li>
-          <li>updated;</li>
-          <li>id;</li>
-          <li>total results;</li>
-          <li>start index;</li>
-          <li>items per page.</li>
-        </ul>
-
-        <p>Users that need  accurate filter, have to pass parameters to perform:</p>
-
-        <div class="source"><pre class="prettyprint">Catalogue catalogue = catalogueDescription.getCatalogue( new Parameter( &quot;startPage&quot;, &quot;2&quot; ), ... );</pre></div>
-
-        <p>where parameters are defined in the section above.</p>
-
-        <p>Simple pagination feature is offered in the <tt>Catalogue</tt> class:</p>
-
-        <div class="source"><pre class="prettyprint">while ( catalogue.hasMoreResults() )
-{
-    Catalogue next = catalogue.getNextResults();
-}</pre></div>
-      </div>
-
-      <div class="section"><h3>Accessing to the Series<a name="Accessing_to_the_Series"></a></h3>
-        <p><tt>Series</tt> can be accessed from a <tt>Catalogue</tt> instance:</p>
-
-        <div class="source"><pre class="prettyprint">for ( Serie serie : catalogue )
-{
-    // put your code here
-}</pre></div>
-
-        <p><tt>Serie</tt> instances allow access (via getters) to meta informations such as:</p>
-        <ul>
-          <li>title;</li>
-          <li>subtitle;</li>
-          <li>content;</li>
-          <li>published;</li>
-          <li>updated;</li>
-          <li>id;</li>
-          <li>total results;</li>
-          <li>start index;</li>
-          <li>items per page.</li>
-        </ul>
-
-        <p>Simple pagination feature is offered in the <tt>Serie</tt> class:</p>
-
-        <div class="source"><pre class="prettyprint">while ( serie.hasMoreResults() )
-{
-    Serie next = serie.getNextResults();
-}</pre></div>
-
-        <p>If series URLs are already known, users can access to <tt>Serie</tt> instances directly from the
-        <tt>CatalogueClient</tt>:</p>
-
-        <div class="source"><pre class="prettyprint">Serie serie = client.getSerie( &quot;http://catalog.gpod.terradue.int/catalogue/gpod/ASA_WSM_1P/ASA_WSM_1PNPDE20111103_193813_000001713108_00171_50616_5757.N1/xml&quot; )</pre></div>
-
-        <p>and optionally can pass <tt>Parameter</tt>s instances.</p>
-      </div>
-
-      <div class="section"><h3>Accessing to the DataSets<a name="Accessing_to_the_DataSets"></a></h3>
-        <p><tt>DataSet</tt> instances can be accessed from a <tt>Serie</tt> instance:</p>
-
-        <div class="source"><pre class="prettyprint">for ( DataSet dataset : serie )
-{
-    // put your code here
-}</pre></div>
-
-        <p><tt>DataSet</tt> instances allow access (via getters) to meta informations such as:</p>
-        <ul>
-          <li>title;</li>
-          <li>subtitle;</li>
-          <li>updated;</li>
-          <li>begin position;</li>
-          <li>end position;</li>
-          <li>geo location.</li>
+          <li>Install/Configure GPG - The artifacts that are deployed to the central Maven repositories need to be signed.
+          To do this you will need to have a public and private keypair.
+          There is a very good <a class="externalLink" href="http://www.sonatype.com/people/2010/01/how-to-generate-pgp-signatures-with-maven/">guide</a>
+          that will walk you though this.</li>
+          <li>Install Maven 2.2.1 or higher. 2.2.0 has a bug that will produce invalid checksums;</li>
+          <li>We strongly encourage our developers to install Maven 3.0</li>
         </ul>
       </div>
     </div>
 
-    <div class="section"><h2>Related GeoData<a name="Related_GeoData"></a></h2>
-      <p><tt>DataSet</tt> geo location can be of various formats:</p>
-      <ul>
-        <li>box;</li>
-        <li>line;</li>
-        <li>point;</li>
-        <li>polygon.</li>
-      </ul>
-      <p>Classes that represent this format are contained in the subpackage
-      <tt>com.terradue.jcatalogue.client.geo</tt>:</p>
-      <ul>
-        <li>Box;</li>
-        <li>Line;</li>
-        <li>Point;</li>
-        <li>Polygon.</li>
-      </ul>
+    <div class="section"><h2>Configuration<a name="Configuration"></a></h2>
+        <div class="section"><h3>Maven<a name="Maven"></a></h3>
+          <p>As of Maven 2.1.0 you can now encrypt your servers passwords. We highly recommend that you follow this
+          <a class="externalLink" href="http://maven.apache.org/guides/mini/guide-encryption.html">guide</a> to set your master password and
+          use it to encrypt your Sonatype password in the next section.</p>
+        </div>
+
+        <div class="section"><h3>Sonatype<a name="Sonatype"></a></h3>
+          <p>Using the instructions from the previous step encrypt your Sonatype password and add the following servers
+          to your <tt>~/.m2/settings.xml</tt> file. You may already have other servers in this file.
+          If not just create the file.</p>
+
+          <div class="source"><pre class="prettyprint">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;settings&gt;
+  &lt;servers&gt;
+    &lt;server&gt;
+      &lt;id&gt;sonatype-nexus-snapshots&lt;/id&gt;
+      &lt;username&gt;simonetripodi&lt;/username&gt;
+      &lt;password&gt;{jSMOWnoPFgsHVpMvz5VrIt5kRbzGpI8u+9EF1iFQyJQ=}&lt;/password&gt;
+    &lt;/server&gt;
+
+    &lt;server&gt;
+      &lt;id&gt;sonatype-nexus-staging&lt;/id&gt;
+      &lt;username&gt;simonetripodi&lt;/username&gt;
+      &lt;password&gt;{jSMOWnoPFgsHVpMvz5VrIt5kRbzGpI8u+9EF1iFQyJQ=}&lt;/password&gt;
+    &lt;/server&gt;
+  &lt;/servers&gt;
+&lt;/settings&gt;</pre></div>
+        </div>
+
+        <div class="section"><h3>GitHub<a name="GitHub"></a></h3>
+          <p>Add the following server to your <tt>~/.m2/settings.xml</tt> file. You may already have other servers
+          in this file. If not just create the file.</p>
+
+          <div class="source"><pre class="prettyprint">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;settings&gt;
+  &lt;servers&gt;
+    &lt;server&gt;
+      &lt;id&gt;github&lt;/id&gt;
+      &lt;username&gt;git&lt;/username&gt;
+    &lt;/server&gt;
+  &lt;/servers&gt;
+&lt;/settings&gt;</pre></div>
+        </div>
+
+        <div class="section"><h3>Terradue<a name="Terradue"></a></h3>
+          <p>add the following profile to your <tt>~/.m2/settings.xml</tt> file. You may already have other servers
+          in this file. If not just create the file.</p>
+
+          <div class="source"><pre class="prettyprint">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;settings&gt;
+  &lt;profiles&gt;
+    &lt;profile&gt;
+      &lt;id&gt;terradue&lt;/id&gt;
+      &lt;activation&gt;
+        &lt;activeByDefault&gt;false&lt;/activeByDefault&gt;
+      &lt;/activation&gt;
+      &lt;properties&gt;
+        &lt;mavenExecutorId&gt;forked-path&lt;/mavenExecutorId&gt;
+        &lt;!-- put your GPG key here --&gt;
+        &lt;gpg.keyname&gt;41A0D191&lt;/gpg.keyname&gt;
+      &lt;/properties&gt;
+    &lt;/profile&gt;
+  &lt;/profiles&gt;
+&lt;/settings&gt;</pre></div>
+        </div>
+
+        <div class="section"><h3>Configure the Terradue parent pom<a name="Configure_the_Terradue_parent_pom"></a></h3>
+          <p>If you're starting a new project, please use the already configured parent pom to avoid replicate the same
+          meta inf in every project:</p>
+
+          <div class="source"><pre class="prettyprint">&lt;parent&gt;
+  &lt;groupId&gt;com.terradue&lt;/groupId&gt;
+  &lt;artifactId&gt;oss-java-parent&lt;/artifactId&gt;
+  &lt;version&gt;1&lt;/version&gt;
+&lt;/parent&gt;</pre></div>
+        </div>
     </div>
 
-    <div class="section"><h2>Downloading DataSets<a name="Downloading_DataSets"></a></h2>
-      <p>DataSets download can be invoked directly in the <tt>DataSet</tt> instance:</p>
+    <div class="section"><h2>Release<a name="Release"></a></h2>
+      <p>The release plugin for Maven is already configured in the parent pom file so all you need to do is execute the
+      following two steps to complete the release.</p>
+      <p>The first step will create the release tag and update the pom with the correct release and snapshot versions.</p>
+      <p>The second step will sign and deploy the artifacts to the Sonatype open source repository.</p>
+      <p>This repository is synced every hour to the central Maven repositories. If you don't supply the optional
+      <tt>gpg.passphrase</tt> then you will be prompted for it</p>
 
-      <div class="source"><pre class="prettyprint">import com.terradue.jcatalogue.client.download.*;
+      <ul>
+        <li>Prepare the release: <tt>mvn release:prepare</tt></li>
+        <li>Perform: <tt>mvn release:perform -Dgpg.passphrase=thephrase</tt> or just
+        <tt>mvn release:perform -Pparent-release</tt> and type the gpg passphrase when prompted.</li>
+      </ul>
 
-dataSet.download( new File( &quot;/tmp&quot; ), new DownloadHandler()
-{
-
-    @Override
-    public void onSuccess( File file )
-    {
-        check( file.exists() );
-        extractAndProcess( file );
-    }
-
-    @Override
-    public void onWarning( String message )
-    {
-        System.out.printf( &quot;[WARNING] %s%n&quot;,  message );
-    }
-
-    @Override
-    public void onError( String message )
-    {
-        log( message );
-    }
-
-    @Override
-    public void onError( Throwable t )
-    {
-        log( t );
-    }
-
-    @Override
-    public void onFatal( String message )
-    {
-        fail( message );
-    }
-
-} );</pre></div>
-
-      <p>the first argument of the <tt>download</tt> method is the target directory where users intend download
-      the dataset, the secondi argument is an handler useful to implement callbacks on errors and success.</p>
-
-      <div class="section"><h3>Downloaders<a name="Downloaders"></a></h3>
-        <p><tt>DataSet</tt> instances allow downloading the associated media file, that is usually enlisted
-        in the <tt>enclosure</tt> URL type.</p>
-
-        <p>Each <tt>DataSet</tt> could have more that one <tt>enclosure</tt> URL, so the client will iterate
-        over them until it can download the media file - or URLs are exhausted</p>
-
-        <p>By default, the client provides support for <tt>http(s)</tt> only, downloaders for different protocols
-        need to be provided.</p>
-
-        <p>It is possible to plug <tt>Downloader</tt>s by two way:</p>
-
-        <ul>
-          <li><i>explicit</i>: by associating the <tt>Downloader</tt> instance to a related protocol:
-            <div class="source"><pre class="prettyprint">client.registerDownloader( &quot;ftp&quot;, new MyFtpDownloader() );</pre></div>
-          </li>
-          <li><i>implicit</i>: by annotating the <tt>Downloader</tt> class with
-          <tt>@com.terradue.jcatalogue.client.download.Protocol</tt> annotation, where specified the protocol(s)
-
-          <div class="source"><pre class="prettyprint">@Protocol({ &quot;ftp&quot;, &quot;sftp&quot; })
-public final class MyFtpDownloader
-    implements Downloader
-{
-
-    @Override
-    public void download( File targetDir, URI fileUri, DownloadHandler handler )
-    {
-        // your implementation here
-    }
-
-}</pre></div>
-
-          then registering the instance (omitting the protocols):
-
-          <div class="source"><pre class="prettyprint">client.registerDownloader( new MyFtpDownloader() );</pre></div></li>
-        </ul>
-      </div>
+      <p>Now you can checkout the new release ( or just use the one left over from the release in target/checkout) and
+      issue <tt>mvn package</tt> to build the artifacts for the site.</p>
     </div>
   
 
