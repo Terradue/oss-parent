@@ -28,116 +28,41 @@
   </properties>
 
   <body>
-    <section name="Introduction">
-      <p>This page will guide the development team with setting up their environment to perform a release.</p>
+    <section name="Welcome to Terradue's OpenSource Software repository!">
+      <p>Terradue is the company with a new vision to the production, management and distribution of spatial data where
+      cloud technology joins geographical data inventory and query systems, carried out collaboratively with best-known
+      open source projects.</p>
 
-      <subsection name="Prerequisites">
-        <ul>
-          <li>Install/Configure GPG - The artifacts that are deployed to the central Maven repositories need to be signed.
-          To do this you will need to have a public and private keypair.
-          There is a very good <a href="http://www.sonatype.com/people/2010/01/how-to-generate-pgp-signatures-with-maven/">guide</a>
-          that will walk you though this.</li>
-          <li>Install Maven 2.2.1 or higher. 2.2.0 has a bug that will produce invalid checksums;</li>
-          <li>We strongly encourage our developers to install Maven 3.0</li>
-        </ul>
+      <subsection name="Open Source projects">
+        <table>
+          <thead>
+            <tr><th>Component</th><th></th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a href="http://terradue.github.com/dsione-tools/">dsione-tools</a></td>
+              <td>CLI tools for OpenNebula to interact with DSI</td>
+            </tr>
+            <tr>
+              <td><a href="http://terradue.github.com/FindThenFetch/">FindThenFetch</a></td>
+              <td>OpenSearch client written in Perl</td>
+            </tr>
+            <tr>
+              <td><a href="http://terradue.github.com/jcatalogue-client/">jcatalogue-client</a></td>
+              <td>a REST client APIs set for OpenSearch Geo and Temporal protocol servers</td>
+            </tr>
+            <tr>
+              <td><a href="http://terradue.github.com/xiongnu/">xiongnu</a></td>
+              <td>Couchbase prototype catalogue</td>
+            </tr>
+            <tr>
+              <td><a href="http://terradue.github.com/opennebula-occi-tsystems/">opennebula-occi-tsystems</a></td>
+              <td>An OpenNebula extension to bridge OpenNebula to t-systems Dynamic Service for Infrastructure (DSI)
+              via OCCI API</td>
+            </tr>
+          </tbody>
+        </table>
       </subsection>
-    </section>
-
-    <section name="Configuration">
-        <subsection name="Maven">
-          <p>As of Maven 2.1.0 you can now encrypt your servers passwords. We highly recommend that you follow this
-          <a href="http://maven.apache.org/guides/mini/guide-encryption.html">guide</a> to set your master password and
-          use it to encrypt your Sonatype password in the next section.</p>
-        </subsection>
-
-        <subsection name="Sonatype">
-          <p>Using the instructions from the previous step encrypt your Sonatype password and add the following servers
-          to your <code>~/.m2/settings.xml</code> file. You may already have other servers in this file.
-          If not just create the file.</p>
-
-          <source><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
-<settings>
-  <servers>
-    <server>
-      <id>sonatype-nexus-snapshots</id>
-      <username>simonetripodi</username>
-      <password>{jSMOWnoPFgsHVpMvz5VrIt5kRbzGpI8u+9EF1iFQyJQ=}</password>
-    </server>
-
-    <server>
-      <id>sonatype-nexus-staging</id>
-      <username>simonetripodi</username>
-      <password>{jSMOWnoPFgsHVpMvz5VrIt5kRbzGpI8u+9EF1iFQyJQ=}</password>
-    </server>
-  </servers>
-</settings>]]></source>
-        </subsection>
-
-        <subsection name="GitHub">
-          <p>Add the following server to your <code>~/.m2/settings.xml</code> file. You may already have other servers
-          in this file. If not just create the file.</p>
-
-          <source><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
-<settings>
-  <servers>
-    <server>
-      <id>github</id>
-      <username>git</username>
-    </server>
-  </servers>
-</settings>]]></source>
-        </subsection>
-
-        <subsection name="Terradue">
-          <p>add the following profile to your <code>~/.m2/settings.xml</code> file. You may already have other servers
-          in this file. If not just create the file.</p>
-
-          <source><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
-<settings>
-  <profiles>
-    <profile>
-      <id>terradue</id>
-      <activation>
-        <activeByDefault>false</activeByDefault>
-      </activation>
-      <properties>
-        <mavenExecutorId>forked-path</mavenExecutorId>
-        <!-- put your GPG key here -->
-        <gpg.keyname>41A0D191</gpg.keyname>
-      </properties>
-    </profile>
-  </profiles>
-</settings>]]></source>
-        </subsection>
-
-        <subsection name="Configure the Terradue parent pom">
-          <p>If you're starting a new project, please use the already configured parent pom to avoid replicate the same
-          meta inf in every project:</p>
-
-          <source><![CDATA[<parent>
-  <groupId>com.terradue</groupId>
-  <artifactId>oss-parent</artifactId>
-  <version>1</version>
-</parent>]]></source>
-        </subsection>
-    </section>
-
-    <section name="Release">
-      <p>The release plugin for Maven is already configured in the parent pom file so all you need to do is execute the
-      following two steps to complete the release.</p>
-      <p>The first step will create the release tag and update the pom with the correct release and snapshot versions.</p>
-      <p>The second step will sign and deploy the artifacts to the Sonatype open source repository.</p>
-      <p>This repository is synced every hour to the central Maven repositories. If you don't supply the optional
-      <code>gpg.passphrase</code> then you will be prompted for it</p>
-
-      <ul>
-        <li>Prepare the release: <code>mvn release:prepare</code></li>
-        <li>Perform: <code>mvn release:perform -Dgpg.passphrase=thephrase</code> or just
-        <code>mvn release:perform -Pparent-release</code> and type the gpg passphrase when prompted.</li>
-      </ul>
-
-      <p>Now you can checkout the new release ( or just use the one left over from the release in target/checkout) and
-      issue <code>mvn package</code> to build the artifacts for the site.</p>
     </section>
   </body>
 
