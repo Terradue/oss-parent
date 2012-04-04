@@ -21,6 +21,8 @@
     <title>Terradue OSS parent POM Changes</title>
   </properties>
   <body>
-    <release version="1" date="2011-11-29" description="First release." />
+    <release version="3" date="2012-04-04" description="Maintenance release." />
+    <release version="2" date="2011-01-08" description="Maintenance release." />
+    <release version="1" date="2011-11-29" description="Maintenance release." />
   </body>
 </document>
