@@ -19,7 +19,7 @@
 
   <groupId>com.terradue</groupId>
   <artifactId>oss-parent</artifactId>
-  <version>3</version>
+  <version>4-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Terradue OSS parent POM</name>
